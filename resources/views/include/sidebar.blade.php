@@ -67,7 +67,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('user.create')}}">
             <i class="fas fa-user-plus text-white"></i>
             <span>Add Task</span></a>
     </li>

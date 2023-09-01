@@ -25,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        
+        return view('user.createtask');        
     }
 
     /**
@@ -36,7 +36,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'task_tile' => 'required',
+            'task_description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+        
     }
 
     /**

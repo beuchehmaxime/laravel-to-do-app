@@ -19,7 +19,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    All Task</div>
+                                    My Tasks</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">44555455</div>
                             </div>
                             <div class="col-auto">
@@ -37,7 +37,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Completed Tasks</div>
+                                    My Completed Tasks</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">$354354</div>
                             </div>
                             <div class="col-auto">
@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Tasks
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">My Pending Tasks
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
@@ -84,7 +84,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Expired Tasks</div>
+                                    My Expired Tasks</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                             </div>
                             <div class="col-auto">
@@ -106,55 +106,56 @@
                   <!-- DataTales Example -->
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">All Employees</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">All My Task</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>#</th>
-                                        <th>FirstName</th>
-                                        <th>LastName</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Task Title</th>
+                                        <th>Task Description</th>
+                                        <th>Task Status</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
+                                        <th></th>
                                         <th>#</th>
-                                        <th>FirstName</th>
-                                        <th>LastName</th>
-                                        <th>Email</th>
-                                        <th>Position</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Task Title</th>
+                                        <th>Task Description</th>
+                                        <th>Task Status</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    {{-- @foreach ($employees as $key => $employee)
+                                    @foreach ($tasks as $key => $task)
                                     <tr>
-                                        <td>{{ $key+1 }}</td>
-                                        <td>{{$employee->firstname}}</td>
-                                        <td>{{$employee->lastname}}</td>
-                                        <td>{{$employee->email}}</td>
-                                        <td>{{$employee->position}}</td>
-                                        <td>{{$employee->dateofbirth}}</td>
-                                        <td>{{$employee->startdate}}</td>
-                                        <td>${{$employee->salary}}</td>
                                         <td>
-                                            <a href="{{route('edit',$employee->id)}}" class="btn btn-info mb-2">Edit</a> <br>
-                                            <a href="{{route('delete',$employee->id)}}" class="btn btn-danger">Delete</a> <br>
+                                            <form action="#" method="post">
+                                                <input type="checkbox">
+                                            </form>
+                                        </td>                                        
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{$task->tasktitle}}</td>
+                                        <td>{{ Illuminate\Support\Str::limit($task->taskdescription, 50, '...') }}</td>                                        
+                                        <td>{{ $task->iscompleted == 0 ? '<button class="btn btn-warning">Not Completed</button>' : '<button class="btn btn-success">Task Completed</button>' }}</td>
+                                        <td>{{ $task->starttime }}</td>
+                                        <td>{{ $task->endtiem }}</td>
+                                        <td>
+                                            <a href="{{route('edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
+                                            <a href="{{route('delete',$task->id)}}" class="btn btn-danger">Delete</a> <br>
                                             
                                         </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                   
                                 </tbody>
                             </table>
