@@ -16,7 +16,11 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::where('user_id', '=', Auth::user()->id)->latest('id')->get();
-        return view('user.index',compact('tasks'));
+        $taskcount = Task::where('user_id', '=', Auth::user()->id)->count();
+        $pendingtask = Task::where('iscompleted','=', 0)->where('user_id', '=', Auth::user()->id)->count();
+        $completedtask = Task::where('iscompleted','=', 1)->where('user_id', '=', Auth::user()->id)->count();
+        $expiredtask = Task::where('endtime','<', now())->where('user_id', '=', Auth::user()->id)->count();
+        return view('user.index',compact('tasks','pendingtask','taskcount','completedtask','expiredtask'));
     }
 
     /**
@@ -65,7 +69,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -76,7 +80,8 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('user.edittask', compact('task'));
     }
 
     /**

@@ -3,7 +3,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <div class="sidebar-brand-text mx-3">GooD EmployeE</div>
+        <div class="sidebar-brand-text mx-3">Good Task</div>
     </a>
 
     <!-- Divider -->
