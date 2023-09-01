@@ -45,11 +45,11 @@
                                         @csrf
                                         <div class="form-group row">
                                             <label for="#">Username</label>
-                                            <input id="name" class="form-control form-control-user @error('name')
+                                            <input id="username" class="form-control form-control-user @error('username')
                                                 is-invalid
-                                            @enderror" type="text" name="name" :value="old('name')" autofocus autocomplete="name">       
+                                            @enderror" type="text" name="username" :value="old('username')" autofocus placeholder="Username">       
                                             <br>
-                                            @error('name')
+                                            @error('username')
                                                 <p class="text-danger">{{$message}}</p>
                                             @enderror                                   
                                         </div>
@@ -57,7 +57,7 @@
                                             <label for="#">Email</label>
                                             <input type="email" name="email" :value="old('email')" class="form-control form-control-user @error('email')
                                                 is-invalid
-                                            @enderror" id="exampleInputEmail"
+                                            @enderror" id="email"
                                                 placeholder="Email Address"> <br>
                                                 @error('email')
                                                     <p class="text-danger">{{$message}}</p>
