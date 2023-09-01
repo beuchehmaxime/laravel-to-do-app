@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,14 +19,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/dashboard', function () {
+Route::get('/profile/index', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('profile.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profiles', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profiles', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profiles', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function(){
+    // Route::controller(UserController::class)->group(function(){
+    //     Route::get('/user', 'index')->name('user.index');
+    // });
+    Route::resource('/user', TaskController::class);
 });
 
 require __DIR__.'/auth.php';
