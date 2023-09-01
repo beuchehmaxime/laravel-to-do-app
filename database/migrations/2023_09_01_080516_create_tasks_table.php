@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('tasktitle');
-            $table->string('taskdescription')->nullable();
+            $table->longText('taskdescription')->nullable();
             $table->boolean('iscompleted')->default(0);
-            $table->dateTime('starttime');
-            $table->dateTime('endtime');
+            $table->date('starttime');
+            $table->date('endtime');
             $table->foreignId('user_id')->constrained(table: 'users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::latest('id')->get();
+        $tasks = Task::where('user_id', '=', Auth::user()->id)->latest('id')->get();
         return view('user.index',compact('tasks'));
     }
 
@@ -36,13 +37,24 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::user()->id;
         $request->validate([
-            'task_tile' => 'required',
-            'task_description' => 'required',
+            'task_title' => 'required',
             'start_date' => 'required',
             'end_date' => 'required'
         ]);
-        
+        $now = now();
+        Task::insert([
+            'tasktitle' => $request->task_title,
+            'taskdescription' => $request->task_description,
+            'starttime' => $request->start_date,
+            'endtime' => $request->end_date,
+            'user_id' => $user_id,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        return redirect()->back()->with('success','Task Added Successfully.');
     }
 
     /**

@@ -31,9 +31,9 @@
                                 <div class="col-12">
                                     <label for="inputText" class="col-form-label">Task Title</label>
                                     <div>
-                                        <input type="text" name="task_description" class="form-control @error('task_description') is-invalid @enderror" id="task_description"> 
+                                        <input type="text" name="task_title" class="form-control @error('task_title') is-invalid @enderror" id="task_title"> 
                                     </div>
-                                    @error('task_description')
+                                    @error('task_title')
                                     <div class="text-danger">{{$message}}</div>                      
                                     @enderror
                                 </div>
@@ -45,7 +45,7 @@
                                         <textarea name="task_description" id="task_description" class="form-control @error('task_description') is-invalid @enderror" cols="30" rows="10"></textarea>
                                          
                                     </div>
-                                    @error('tasktitle')
+                                    @error('task_description')
                                     <div class="text-danger">{{$message}}</div>                      
                                     @enderror
                                 </div>

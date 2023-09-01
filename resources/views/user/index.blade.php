@@ -146,12 +146,16 @@
                                         <td>{{ $key+1 }}</td>
                                         <td>{{$task->tasktitle}}</td>
                                         <td>{{ Illuminate\Support\Str::limit($task->taskdescription, 50, '...') }}</td>                                        
-                                        <td>{{ $task->iscompleted == 0 ? '<button class="btn btn-warning">Not Completed</button>' : '<button class="btn btn-success">Task Completed</button>' }}</td>
+                                        <td>@if (!$task->iscompleted)
+                                            <span class="btn btn-warning">Not Completed</span> 
+                                        @else
+                                        <span class="btn btn-success">Task Completed</span>
+                                        @endif</td>
                                         <td>{{ $task->starttime }}</td>
-                                        <td>{{ $task->endtiem }}</td>
+                                        <td>{{ $task->endtime }}</td>
                                         <td>
-                                            <a href="{{route('edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
-                                            <a href="{{route('delete',$task->id)}}" class="btn btn-danger">Delete</a> <br>
+                                            <a href="{{route('user.edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
+                                            <a href="{{route('user.destroy',$task->id)}}" class="btn btn-danger">Delete</a> <br>
                                             
                                         </td>
                                     </tr>
