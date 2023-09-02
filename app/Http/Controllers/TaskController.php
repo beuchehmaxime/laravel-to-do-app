@@ -125,4 +125,6 @@ class TaskController extends Controller
         Task::findOrFail($id)->delete();
         return redirect()->back()->with('success','Task Deleted Successfully.');
     }
+
+   
 }

@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function(){
     //     Route::get('/user', 'index')->name('user.index');
     // });
     Route::resource('/user', TaskController::class);
+    Route::get('/pendingtask',[UserController::class, 'index'])->name('user.pendingtask');;
+    Route::get('/logout',[UserController::class, 'logout'])->name('user.logout');;
 });
 
 require __DIR__.'/auth.php';
