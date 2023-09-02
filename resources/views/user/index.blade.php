@@ -104,7 +104,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -131,26 +131,40 @@
                                 </tfoot>
                                 <tbody>
                                     @foreach ($tasks as $key => $task)
-                                    <tr>
+                                    <tr class="@if ($task->iscompleted)
+                                        bg-gray-500
+                                    @endif">
                                         <td>
                                             <form action="#" method="post">
-                                                <input type="checkbox">
+                                                <input type="checkbox" @if ($task->iscompleted)
+                                                    checked
+                                                @endif disabled>
                                             </form>
                                         </td>                                        
                                         <td>{{ $key+1 }}</td>
                                         <td>{{$task->tasktitle}}</td>
                                         <td>{{ Illuminate\Support\Str::limit($task->taskdescription, 50, '...') }}</td>                                        
-                                        <td>@if (!$task->iscompleted)
-                                            <span class="btn btn-warning">Not Completed</span> 
-                                        @else
-                                        <span class="btn btn-success">Task Completed</span>
-                                        @endif</td>
+                                        <td>
+                                            @if ($task->endtime < now())
+                                            <span class="btn btn-danger">Expired</span>
+                                            @else
+                                                @if (!$task->iscompleted)
+                                                    <span class="btn btn-warning">Not Completed</span> 
+                                                @else
+                                                    <span class="btn btn-success">Completed</span>
+                                                @endif</td>
+                                            @endif
+
+                                            
                                         <td>{{ $task->starttime }}</td>
                                         <td>{{ $task->endtime }}</td>
                                         <td>
                                             <a href="{{route('user.edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
-                                            <a href="{{route('user.destroy',$task->id)}}" class="btn btn-danger">Delete</a> <br>
-                                            
+                                            <form action="{{route('user.destroy',$task->id)}}" method="post" style="display: inline-block" class="mb-2">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

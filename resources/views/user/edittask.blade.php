@@ -27,6 +27,7 @@
                            <!-- General Form Elements -->
                         <form method="POST" action="{{route('user.update', $task->id )}}" enctype="multipart/form-data">
                             @csrf
+                            @method('PATCH')
                             <div class="form-group">
                                 <div class="col-12">
                                     <label for="inputText" class="col-form-label">Task Title</label>
@@ -50,6 +51,7 @@
                                     @enderror
                                 </div>
                             </div>
+                       
                             <div class="form-group">
                                 <div class="col-12">
                                     <label for="inputText" class="col-form-label">Start Date</label>
@@ -70,6 +72,14 @@
                                     @error('end_date')
                                     <div class="text-danger">{{$message}}</div>                      
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <input type="checkbox" value="1" name="iscompleted" id="iscompleted" @if ($task->iscompleted)
+                                    checked
+                                @endif >
+                                    <label for="inputText" class="col-form-label" >Tick if You have completed this task</label>
                                 </div>
                             </div>
                             <div class="row mb-3">
