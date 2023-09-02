@@ -14,6 +14,11 @@ class UserController extends Controller
         return view('user.pendingtask',compact('tasks'));
     }
 
+    public function expiredTask(){
+        $tasks = Task::where('endtime','<', now())->where('user_id', '=', Auth::user()->id)->get();
+        return view('user.expiredtask',compact('tasks'));
+    }
+
     public function logout(Request $request): RedirectResponse
     {
         echo 'lkadfjldf';

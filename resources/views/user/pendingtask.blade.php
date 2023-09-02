@@ -50,44 +50,58 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach ($tasks as $key => $task)
-                                    <tr>
-                                        <td>
-                                            <form action="#" method="post">
-                                                <input type="checkbox" @if ($task->iscompleted)
-                                                    checked
-                                                @endif disabled>
-                                            </form>
-                                        </td>                                        
-                                        <td>{{ $key+1 }}</td>
-                                        <td>{{$task->tasktitle}}</td>
-                                        <td>{{ Illuminate\Support\Str::limit($task->taskdescription, 50, '...') }}</td>                                        
-                                        <td>
-                                            @if ($task->endtime < now())
-                                            <span class="btn btn-danger">Expired</span>
-                                            @else
-                                                @if (!$task->iscompleted)
-                                                    <span class="btn btn-warning">Not Completed</span> 
-                                                @else
-                                                    <span class="btn btn-success">Completed</span>
-                                                @endif</td>
-                                            @endif
-
-                                            
-                                        <td>{{ $task->starttime }}</td>
-                                        <td>{{ $task->endtime }}</td>
-                                        <td>
-                                            <a href="{{route('user.edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
-                                            <form action="{{route('user.destroy',$task->id)}}" method="post" style="display: inline-block" class="mb-2">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                  
-                                </tbody>
+                                    @if ($tasks->isNotEmpty())
+                                         @foreach ($tasks as $key => $task)
+                                         <tr>
+                                             <td>
+                                                 <form action="#" method="post">
+                                                     <input type="checkbox" @if ($task->iscompleted)
+                                                         checked
+                                                     @endif disabled>
+                                                 </form>
+                                             </td>                                        
+                                             <td>{{ $key+1 }}</td>
+                                             <td>{{$task->tasktitle}}</td>
+                                             <td>{{ Illuminate\Support\Str::limit($task->taskdescription, 50, '...') }}</td>                                        
+                                             <td>
+                                                 @if ($task->endtime < now())
+                                                 <span class="btn btn-danger">Expired</span>
+                                                 @else
+                                                     @if (!$task->iscompleted)
+                                                         <span class="btn btn-warning">Not Completed</span> 
+                                                     @else
+                                                         <span class="btn btn-success">Completed</span>
+                                                     @endif</td>
+                                                 @endif
+ 
+                                                 
+                                             <td>{{ $task->starttime }}</td>
+                                             <td>{{ $task->endtime }}</td>
+                                             <td>
+                                                 <a href="{{route('user.edit',$task->id)}}" class="btn btn-info mb-2">Edit</a> <br>
+                                                 <form action="{{route('user.destroy',$task->id)}}" method="post" style="display: inline-block" class="mb-2">
+                                                     @csrf
+                                                     @method('DELETE')
+                                                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                 </form>
+                                             </td>
+                                         </tr>
+                                         @endforeach
+                                    @else
+                                        <tr class="text-center">
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                         <td>
+                                             <p class="h3 text-center">No Task Here</p>
+                                         </td>
+                                         <td></td>
+                                         <td></td>
+                                         <td></td>
+                                        </tr>
+                                    @endif
+                                   
+                                 </tbody>
                             </table>
                         </div>
                     </div>
