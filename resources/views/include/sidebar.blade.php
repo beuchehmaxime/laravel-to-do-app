@@ -89,5 +89,11 @@
             <span>Expired Tasks</span></a>
     </li>
  
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('user.completedtask')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Completed Tasks</span></a>
+    </li>
+ 
 </ul>
 <!-- End of Sidebar -->

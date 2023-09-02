@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/user', TaskController::class);
     Route::get('/pendingtask',[UserController::class, 'index'])->name('user.pendingtask');;
     Route::get('/expiredtask',[UserController::class, 'expiredTask'])->name('user.expiredtask');;
+    Route::get('/completedtask',[UserController::class, 'completedTask'])->name('user.completedtask');;
     Route::get('/logout',[UserController::class, 'logout'])->name('user.logout');;
 });
 

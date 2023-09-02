@@ -18,7 +18,11 @@ class UserController extends Controller
         $tasks = Task::where('endtime','<', now())->where('user_id', '=', Auth::user()->id)->get();
         return view('user.expiredtask',compact('tasks'));
     }
-
+    
+    public function completedTask(){
+        $tasks = Task::where('iscompleted','=', 1)->where('user_id', '=', Auth::user()->id)->get();
+        return view('user.completedtask',compact('tasks'));
+    }
     public function logout(Request $request): RedirectResponse
     {
         echo 'lkadfjldf';
